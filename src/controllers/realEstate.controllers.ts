@@ -7,10 +7,8 @@ const createrealState = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-
-  const realEstate: RealEstateAdressReturn = await realEstateServices.createrealState(
-    req.body
-  );
+  const realEstate: RealEstateAdressReturn =
+    await realEstateServices.createrealState(req.body);
   return res.status(201).json(realEstate);
 };
 

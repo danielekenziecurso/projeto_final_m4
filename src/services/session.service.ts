@@ -14,8 +14,7 @@ const createSession = async ({
     throw new errorsErrors.Unauthorized("Invalid credentials", 401);
 
   const samePwd: boolean = await compare(password, foundUser.password);
-  if (!samePwd)
-    throw new errorsErrors.Unauthorized("Invalid credentials", 401);
+  if (!samePwd) throw new errorsErrors.Unauthorized("Invalid credentials", 401);
 
   const token: string = sign(
     { admin: foundUser.admin },

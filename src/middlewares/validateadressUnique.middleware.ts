@@ -8,7 +8,7 @@ const validateadressUniqueMiddleware = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-    const id: number = Number(req.params.id);
+  const id: number = Number(req.params.id);
   if (!id) return next();
 
   const address: Address | null = await addressRepository.findOneBy({ id });

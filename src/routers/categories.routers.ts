@@ -16,6 +16,9 @@ clientCategories.post(
 
 clientCategories.get("", categoryControllers.readCategory);
 
-clientCategories.get("/:id/realEstate", categoryControllers.readCategoryRealState);
+clientCategories.get(
+  "/:id/realEstate",
+  categoryControllers.readCategoryRealState
+);
 
 export default clientCategories;

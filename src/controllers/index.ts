@@ -9,6 +9,5 @@ export {
   sessionController,
   categoryControllers,
   realEstateControllers,
-  scheduleController
-  
+  scheduleController,
 };

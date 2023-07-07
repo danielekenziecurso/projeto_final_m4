@@ -32,30 +32,42 @@ const createScheduleService = async (
     date: payload.date,
     hour: payload.hour,
     realEstate: {
-        id: payload.realEstateId
-    }
+      id: payload.realEstateId,
+    },
   });
-  if(where) {
-    throw new errorsErrors.AppError("Schedule to this real estate at this date and time already exists", 409)
+  if (where) {
+    throw new errorsErrors.AppError(
+      "Schedule to this real estate at this date and time already exists",
+      409
+    );
   }
   const existingSchedule = await scheduleReposity.findOneBy({
     date: payload.date,
     hour: payload.hour,
   });
   if (existingSchedule) {
-    throw new errorsErrors.AppError("User schedule to this real estate at this date and time already exists", 409);
+    throw new errorsErrors.AppError(
+      "User schedule to this real estate at this date and time already exists",
+      409
+    );
   }
 
   const appointmentTime = new Date(payload.date + " " + payload.hour);
   const startHour = new Date(payload.date + " 08:00");
   const endHour = new Date(payload.date + " 18:00");
   if (appointmentTime < startHour || appointmentTime > endHour) {
-    throw new errorsErrors.AppError("Invalid hour, available times are 8AM to 18PM", 400);
+    throw new errorsErrors.AppError(
+      "Invalid hour, available times are 8AM to 18PM",
+      400
+    );
   }
 
   const appointmentDay = new Date(payload.date).getDay();
   if (appointmentDay === 0 || appointmentDay === 6) {
-    throw new errorsErrors.AppError("Invalid date, work days are monday to friday", 400);
+    throw new errorsErrors.AppError(
+      "Invalid date, work days are monday to friday",
+      400
+    );
   }
 
   const createSchedule: Schedule = scheduleReposity.create({
@@ -65,21 +77,21 @@ const createScheduleService = async (
   } as DeepPartial<Schedule>);
 
   await scheduleReposity.save(createSchedule);
-  
+
   return { message: "Schedule created" };
 };
 
 const readSchedulesService = async (id: number): Promise<ReturnSchedule> => {
   const schedule: ReturnSchedule | null = await scheduleReposity.findOne({
     where: { id: id },
-    relations: { user: true},
-  })
-  console.log(schedule, "oi")
+    relations: { user: true },
+  });
+  console.log(schedule, "oi");
 
-    if (!schedule) {
-      throw new errorsErrors.NotFound("RealEstate not found", 404);
-    }
-    return returnScheduleSchema.parse(schedule);
+  if (!schedule) {
+    throw new errorsErrors.NotFound("RealEstate not found", 404);
   }
+  return returnScheduleSchema.parse(schedule);
+};
 
 export default { createScheduleService, readSchedulesService };

@@ -23,8 +23,7 @@ const updateuser = async (user: User, payload: UserUpdate): Promise<User> => {
   return await userRepository.save({ ...user, ...payload });
 };
 const destroyUser = async (user: User): Promise<void> => {
-      await userRepository.softRemove(user);
-      
+  await userRepository.softRemove(user);
 };
 
 export default { createUser, readUser, updateuser, destroyUser };

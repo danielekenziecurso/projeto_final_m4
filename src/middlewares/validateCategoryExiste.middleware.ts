@@ -14,7 +14,9 @@ const validateCategoryExistsMiddleware = async (
     return next();
   }
 
-  const category: Category | null = await categoryRepository.findOneBy({ name });
+  const category: Category | null = await categoryRepository.findOneBy({
+    name,
+  });
 
   if (category) {
     return next(new errorsErrors.AppError("Category already exists", 409));

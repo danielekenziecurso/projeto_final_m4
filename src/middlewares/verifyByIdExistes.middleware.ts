@@ -8,14 +8,14 @@ const verifyByIdExistsMiddleware = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-    const id: number = Number(req.params.id);
+  const id: number = Number(req.params.id);
 
-    const user: User | null = await userRepository.findOneBy({ id });
-    if (!user) throw new errorsErrors.NotFound("User not found", 404);
-  
-    res.locals = { ...res.locals, user };
-  
-    return next();
+  const user: User | null = await userRepository.findOneBy({ id });
+  if (!user) throw new errorsErrors.NotFound("User not found", 404);
+
+  res.locals = { ...res.locals, user };
+
+  return next();
 };
 
 export default verifyByIdExistsMiddleware;

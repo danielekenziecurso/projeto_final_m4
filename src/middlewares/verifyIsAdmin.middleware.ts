@@ -10,7 +10,6 @@ export const verifyIsAdminMiddleware = (
   const { admin } = res.locals.decoded;
   if (!admin) throw new errorsErrors.AppError("Insufficient permission", 403);
 
-
   return next();
 };
 
