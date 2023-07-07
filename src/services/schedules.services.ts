@@ -86,7 +86,6 @@ const readSchedulesService = async (id: number): Promise<ReturnSchedule> => {
     where: { id: id },
     relations: { user: true },
   });
-  console.log(schedule, "oi");
 
   if (!schedule) {
     throw new errorsErrors.NotFound("RealEstate not found", 404);
