@@ -31,7 +31,6 @@ const updateUser = async (user: User, payload: UserUpdate): Promise<User> => {
 
 const destroyUser = async (req: Request, res: Response): Promise<Response> => {
   await userServices.destroyUser(res.locals.user);
-  console.log(res.locals.user);
   return res.status(204).json();
 };
 

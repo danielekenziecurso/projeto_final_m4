@@ -1,7 +1,13 @@
 import "reflect-metadata";
 import "express-async-errors";
 import express from "express";
-import { clientCategories, clientRealEstate, clientSchedules, clientUser, clienteSession } from "./routers";
+import {
+  clientCategories,
+  clientRealEstate,
+  clientSchedules,
+  clientUser,
+  clienteSession,
+} from "./routers";
 import middlewares from "./middlewares";
 
 const app = express();
@@ -15,8 +21,8 @@ app.use("/categories", clientCategories);
 
 app.use("/realEstate", clientRealEstate);
 
-app.use("/schedules", clientSchedules)
+app.use("/schedules", clientSchedules);
 
-app.use(middlewares.handleErrorMiddleware)
+app.use(middlewares.handleErrorMiddleware);
 
 export default app;
