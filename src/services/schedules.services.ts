@@ -81,7 +81,7 @@ const createScheduleService = async (
   return { message: "Schedule created" };
 };
 
-const readSchedulesService = async (id: number): Promise<ReturnSchedule> => {
+const readSchedulesService = async (id: number): Promise<Object> => {
   const schedule: ReturnSchedule | null = await scheduleReposity.findOne({
     where: { id: id },
     relations: { user: true },
@@ -90,7 +90,8 @@ const readSchedulesService = async (id: number): Promise<ReturnSchedule> => {
   if (!schedule) {
     throw new errorsErrors.NotFound("RealEstate not found", 404);
   }
-  return returnScheduleSchema.parse(schedule);
+
+  return schedule;
 };
 
 export default { createScheduleService, readSchedulesService };

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Projeto Final: KImóveis - TypeORM com Relacionamentos
 
 ## Introdução
@@ -165,3 +166,6 @@ A rota não precisa de autenticação para ser acessada.
 
 -   Rota deve listar todos os agendamentos de um imóvel.
 -   A rota pode ser acessada apenas por administradores.
+=======
+# projeto_final_m4
+>>>>>>> ac8e7197c65464ef72dc32497fd0365a531be87c
